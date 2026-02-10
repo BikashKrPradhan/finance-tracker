@@ -22,8 +22,8 @@ export default async function StocksPage() {
 
         <StockForm />
 
-        <div className="overflow-hidden rounded-xl border border-zinc-200/80 bg-white shadow-sm">
-          <table className="w-full">
+        <div className="overflow-x-auto rounded-xl border border-zinc-200/80 bg-white shadow-sm">
+          <table className="w-full min-w-[600px]">
             <thead>
               <tr className="border-b border-zinc-200 bg-zinc-50/80">
                 <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-700">

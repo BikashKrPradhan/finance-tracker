@@ -29,7 +29,7 @@ export default function Navbar() {
           {/* Mobile hamburger button (top-left) */}
           <button
             type="button"
-            className="sm:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 bg-white/80 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-colors"
+            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 bg-white/80 text-zinc-700 hover:bg-zinc-50 hover:text-zinc-900 transition-colors"
             aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setIsMobileMenuOpen((open) => !open)}
           >
@@ -64,7 +64,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop navigation links */}
-          <div className="hidden sm:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-0.5">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
