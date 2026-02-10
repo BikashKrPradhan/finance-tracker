@@ -3,8 +3,6 @@
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 
-const user = await getCurrentUser();
-
 
 export async function getDashboardData() {
   const user = await getCurrentUser();
