@@ -2,7 +2,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { getDashboardData } from "./actions";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/getCurrentUser";
+
 
 export async function createNetWorthSnapshot() {
   const user = await getCurrentUser();
