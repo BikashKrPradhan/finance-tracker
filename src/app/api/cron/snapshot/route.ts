@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     );
 
     const stockTotal = user.stocks.reduce(
-      (sum, s) => sum + Number(s.currentAmount),
+      (sum, s) => sum + s.quantity * Number(s.ltp),
       0
     );
 

@@ -36,11 +36,11 @@ export async function getDashboardData() {
   );
 
   const stockInvested = stocks.reduce(
-    (s, x) => s + Number(x.investedAmount),
+    (s, x) => s + x.quantity * Number(x.avgBuyPrice),
     0
   );
   const stockCurrent = stocks.reduce(
-    (s, x) => s + Number(x.currentAmount),
+    (s, x) => s + x.quantity * Number(x.ltp),
     0
   );
 
