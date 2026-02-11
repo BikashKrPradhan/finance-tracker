@@ -21,6 +21,7 @@ model User {
   netWorthSnapshots  NetWorthSnapshot[]
   accounts           Account[]
   sessions           Session[]
+  providentFund  ProvidentFund?
 }
 
 
@@ -102,4 +103,14 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model ProvidentFund {
+  id        String   @id @default(uuid())
+  amount    Decimal  @db.Decimal(14, 2)
+  updatedAt DateTime
+  createdAt DateTime @default(now())
+
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

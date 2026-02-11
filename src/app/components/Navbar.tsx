@@ -15,6 +15,7 @@ export default function Navbar() {
     { href: "/banks", label: "Banks" },
     { href: "/stocks", label: "Stocks" },
     { href: "/mutual-funds", label: "Mutual Funds" },
+    { href: "/pf", label: "Provident Fund" },
   ];
 
   return (
@@ -86,6 +87,7 @@ export default function Navbar() {
                     />
                   )}
                 </Link>
+                
               );
             })}
           </div>

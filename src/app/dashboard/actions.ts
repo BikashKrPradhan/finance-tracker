@@ -18,6 +18,11 @@ export async function getDashboardData() {
     };
   }
 
+  const pf = await prisma.providentFund.findUnique({
+  where: { userId: user.id },
+});
+
+
   const banks = await prisma.bankAccount.findMany({
     where: { userId: user.id },
   });
@@ -62,14 +67,28 @@ export async function getDashboardData() {
       ? 0
       : (profitLoss / investedTotal) * 100;
 
-  const netWorth = bankTotal + currentTotal;
+  const pfAmount = pf ? Number(pf.amount) : 0;
 
-  return {
-    bankTotal,
-    investedTotal,
-    currentTotal,
-    profitLoss,
-    profitLossPct,
-    netWorth,
-  };
+const netWorth =
+  bankTotal +
+  stockCurrent +
+  mfCurrent +
+  pfAmount;
+
+
+
+ return {
+  bankTotal,
+
+  investedTotal,
+  currentTotal,
+
+  profitLoss,
+  profitLossPct,
+
+  pfAmount,
+  netWorth,
+};
+
+
 }

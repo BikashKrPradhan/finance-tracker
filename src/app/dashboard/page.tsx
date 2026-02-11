@@ -58,16 +58,24 @@ export default async function DashboardPage() {
             index={3}
           />
           <SummaryCard
-            title="P/L %"
-            value={`${data.profitLossPct.toFixed(2)}%`}
-            color={plColor}
-            index={4}
-          />
-          <SummaryCard
-            title="Net Worth"
-            value={`₹${data.netWorth.toLocaleString()}`}
-            index={5}
-          />
+  title="P/L %"
+  value={`${data.profitLossPct.toFixed(2)}%`}
+  color={plColor}
+  index={4}
+/>
+
+<SummaryCard
+  title="Provident Fund"
+  value={`₹${data.pfAmount.toLocaleString()}`}
+  index={5}
+/>
+
+<SummaryCard
+  title="Net Worth"
+  value={`₹${data.netWorth.toLocaleString()}`}
+  index={6}
+/>
+
         </div>
 
         <div className="space-y-4">
