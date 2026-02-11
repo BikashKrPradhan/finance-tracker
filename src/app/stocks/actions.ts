@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/getCurrentUser";
+import { fetchYahooPrice } from "@/lib/market/yahoo";
 
 export async function createStock(data: {
   symbol: string;
@@ -83,5 +84,29 @@ export async function updateStock(
   });
 }
 
+export async function refreshStockPrices() {
+  const user = await getCurrentUser();
+  if (!user) throw new Error("Unauthorized");
 
+  const stocks = await prisma.stock.findMany({
+    where: { userId: user.id },
+  });
+
+  let updated = 0;
+
+  for (const stock of stocks) {
+    const price = await fetchYahooPrice(stock.symbol);
+
+    if (price === null) continue;
+
+    await prisma.stock.update({
+      where: { id: stock.id },
+      data: { ltp: price },
+    });
+
+    updated++;
+  }
+
+  return { updated };
+}
 

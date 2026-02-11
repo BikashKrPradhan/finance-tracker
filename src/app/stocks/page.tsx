@@ -4,6 +4,8 @@ import { getStocks } from "./actions";
 import StockForm from "./StockForm";
 import EditableStockRow from "./EditableStockRow";
 import PageContainer from "../components/PageContainer";
+import RefreshPricesButton from "./RefreshPricesButton";
+
 
 export default async function StocksPage() {
   const stocks = await getStocks();
@@ -51,6 +53,8 @@ export default async function StocksPage() {
             Track your stock investments and performance
           </p>
         </div>
+
+        <RefreshPricesButton />
 
         <StockForm />
 
