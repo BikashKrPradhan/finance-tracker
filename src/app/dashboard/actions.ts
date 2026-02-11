@@ -8,15 +8,17 @@ import { getCurrentUser } from "@/lib/getCurrentUser";
 export async function getDashboardData() {
   const user = await getCurrentUser();
   if (!user) {
-    return {
-      bankTotal: 0,
-      investedTotal: 0,
-      currentTotal: 0,
-      profitLoss: 0,
-      profitLossPct: 0,
-      netWorth: 0,
-    };
-  }
+  return {
+    bankTotal: 0,
+    investedTotal: 0,
+    currentTotal: 0,
+    profitLoss: 0,
+    profitLossPct: 0,
+    pfAmount: 0,
+    netWorth: 0,
+  };
+}
+
 
   const pf = await prisma.providentFund.findUnique({
   where: { userId: user.id },
