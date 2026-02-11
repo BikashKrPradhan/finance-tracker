@@ -11,10 +11,19 @@ export default async function DashboardPage() {
   const data = await getDashboardData();
   const snapshots = await getNetWorthSnapshots();
 
-  const chartData = snapshots.map((s) => ({
-    date: new Date(s.date).toLocaleDateString(),
-    netWorth: Number(s.netWorth),
-  }));
+  const chartData =
+    snapshots.length > 0
+      ? snapshots.map((s) => ({
+        date: new Date(s.date).toLocaleDateString(),
+        netWorth: Number(s.netWorth),
+      }))
+      : [
+        {
+          date: new Date().toLocaleDateString(),
+          netWorth: data.netWorth,
+        },
+      ];
+
 
   const plColor =
     data.profitLoss > 0
@@ -58,34 +67,33 @@ export default async function DashboardPage() {
             index={3}
           />
           <SummaryCard
-  title="P/L %"
-  value={`${data.profitLossPct.toFixed(2)}%`}
-  color={plColor}
-  index={4}
-/>
+            title="P/L %"
+            value={`${data.profitLossPct.toFixed(2)}%`}
+            color={plColor}
+            index={4}
+          />
 
-<SummaryCard
-  title="Provident Fund"
-  value={`₹${data.pfAmount.toLocaleString()}`}
-  index={5}
-/>
+          <SummaryCard
+            title="Provident Fund"
+            value={`₹${data.pfAmount.toLocaleString()}`}
+            index={5}
+          />
 
-<SummaryCard
-  title="Net Worth"
-  value={`₹${data.netWorth.toLocaleString()}`}
-  index={6}
-/>
+          <SummaryCard
+            title="Net Worth"
+            value={`₹${data.netWorth.toLocaleString()}`}
+            index={6}
+          />
 
         </div>
 
         <div className="space-y-4">
           <SnapshotButton />
 
-          {chartData.length > 0 && (
-            <div className="mt-6">
-              <NetWorthChart data={chartData} />
-            </div>
-          )}
+          <div className="mt-6">
+            <NetWorthChart data={chartData} />
+          </div>
+
         </div>
       </div>
     </PageContainer>
